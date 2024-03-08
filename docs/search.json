@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "phylo_bayes.html#approches-classiques-upgma-nj-me",
+    "href": "phylo_bayes.html#approches-classiques-upgma-nj-me",
+    "title": "",
+    "section": "Approches “classiques” (UPGMA, NJ, ME…)",
+    "text": "Approches “classiques” (UPGMA, NJ, ME…)\n\nbasées sur matrices de distances 2-à-2\nminimisation d’un critère (distances, longueur de l’arbre)\navantages : algorithmes et heuristiques rapides\ninconvénients :\n\nles distances ne reflètent pas toujours les vraies distances évolutives (substitutions multiples, homoplasie…)\nn’évaluent qu’une seule topologie (1 seul arbre)"
+  },
+  {
+    "objectID": "phylo_bayes.html#approches-modernes-ml-et-bi",
+    "href": "phylo_bayes.html#approches-modernes-ml-et-bi",
+    "title": "",
+    "section": "Approches “modernes” (ML et BI)",
+    "text": "Approches “modernes” (ML et BI)\n\nLa construction de l’arbre phylogénétique ne repose pas sur une matrice des distances (mais une matrice peut être obtenue)\nLes deux approches sont basées sur des modèles d’évolution des séquences et le test d’hypothèses (probabilités)\nApproches de calcul plus complexes (et gourmandes) :\n\nML : recherche dans l’espace des arbres possibles l’arbre qui maximise la fonction de vraisemblance ; pas d’interprétation probabilistique directe (quelle incertitude sur l’estimation de l’arbre et des paramètres ?)\nBI : exploration de l’espace par MCMC ; permet d’obtenir une mesure probabilistique de tous les paramètres"
+  },
+  {
+    "objectID": "phylo_bayes.html#maximum-likelihood-ml",
+    "href": "phylo_bayes.html#maximum-likelihood-ml",
+    "title": "",
+    "section": "Maximum Likelihood (ML)",
+    "text": "Maximum Likelihood (ML)\n\nObjectif : chercher l’arbre qui explique le mieux les données observées :\n\n\\(P(Seq|Arbre) = \\mathcal{L}(h|data)\\)\n\nOn estime les valeurs de nombreux paramètres selon le modèle évolutif choisi :\n\nmodèle de sites (fréquences, taux de substitutions, hétérogénéité des taux…)\net l’arbre lui-même !\n\nPour trouver la meilleure topologie, on maximise la fonction vraisemblance\nPour obtenir une mesure de confiance du résultat, on procède à un bootstrapping (comme pour les approches classiques) :\nré-échantillonnage → \\(X\\) pseudoréplicats → \\(X\\) arbres → % où chaque branche est retrouvée"
+  },
+  {
+    "objectID": "phylo_bayes.html#bayesian-inference-bi",
+    "href": "phylo_bayes.html#bayesian-inference-bi",
+    "title": "",
+    "section": "Bayesian Inference (BI)",
+    "text": "Bayesian Inference (BI)\n\n\n La méthode bayésienne est issue des travaux des pasteurs Thomas Bayes et Richard Price, puis par Pierre-Simon Laplace, au milieu du XVIIIe siècle. Il a fallu attendre le début des années 2000 pour que le théorème de Bayes prenne son importance actuelle."
+  },
+  {
+    "objectID": "phylo_bayes.html#bayesian-inference-bi-1",
+    "href": "phylo_bayes.html#bayesian-inference-bi-1",
+    "title": "",
+    "section": "Bayesian Inference (BI)",
+    "text": "Bayesian Inference (BI)\nLe théorème de Bayes\n\n\n\nFormulation la plus connue\n\n\n\\[\nP(A❘B)=\\frac{ P(B❘A) \\times P(A) }{ P(B) }\n\\qquad(1)\\]\n\n\n\n\npermet de déterminer la probabilité d’un évènement (ici \\(A\\)) à partir d’un autre évènement qui s’est réalisé (ici \\(B\\))\non peut calculer la probabilité d’un évènement en tenant compte d’informations déjà connues au niveau du système étudié\nl’information peut être mise à jour avec de nouvelles données\ndérive de la théorie des probabilités conditionnelles"
+  },
+  {
+    "objectID": "phylo_bayes.html#bayesian-inference-bi-2",
+    "href": "phylo_bayes.html#bayesian-inference-bi-2",
+    "title": "",
+    "section": "Bayesian Inference (BI)",
+    "text": "Bayesian Inference (BI)\n\nObjectif : chercher l’arbre qui maximise la probabilité d’observer l’arbre connaissant les données :\n\n\\(P(Arbre|Seq)\\)\n\nOn estime les valeurs de nombreux paramètres selon le modèle évolutif choisi :\n\nsubstitutions (taux, hétérogénéités…) et l’arbre lui-même\non donne une valeur initiale et une distribution (connaissance a priori, ou prior)\n\nExemples de priors"
+  },
+  {
+    "objectID": "phylo_bayes.html#bayesian-inference-bi-3",
+    "href": "phylo_bayes.html#bayesian-inference-bi-3",
+    "title": "",
+    "section": "Bayesian Inference (BI)",
+    "text": "Bayesian Inference (BI)\n\nAlgorithme Markov Chain Monte Carlo (MCMC) pour explorer de l’espace :\n\nl’algorithme échantillonne dans les priors\nles chaînes de markov explorent l’espace des paramètres en essayant d’aller vers les points qui améliorent la vraisemblance\n\nà chaque étape la distribution postérieure est affinée à partir de la prior et grâce à la vraisemblance mesurée\non obtient des distributions postérieures (arbre et paramètres) : probabilité + intervalle de crédibilité\npas besoin de boostrapping"
+  },
+  {
+    "objectID": "phylo_bayes.html#bayesian-inference-bi-4",
+    "href": "phylo_bayes.html#bayesian-inference-bi-4",
+    "title": "",
+    "section": "Bayesian Inference (BI)",
+    "text": "Bayesian Inference (BI)\n\nLe plus gros intérêt de l’approche bayésienne : implémentation de modèles complexes\n\ncouplage avec des métadonnées : géographie, espèce hôte, temps…\npermet le test d’hypothèses dans un environnement statistique solide (temps de divergence, racine…)\nex : phylogéographie"
+  },
+  {
+    "objectID": "phylo_bayes.html#comparaison-schématique",
+    "href": "phylo_bayes.html#comparaison-schématique",
+    "title": "",
+    "section": "Comparaison schématique",
+    "text": "Comparaison schématique"
+  },
+  {
+    "objectID": "phylo_bayes.html#décrivent-les-substitutions-et-leurs-taux",
+    "href": "phylo_bayes.html#décrivent-les-substitutions-et-leurs-taux",
+    "title": "",
+    "section": "Décrivent les substitutions et leurs taux",
+    "text": "Décrivent les substitutions et leurs taux\n\n\\[\n\\tiny{\nQ={\n\\begin{pmatrix}\n-\\mu _{A}&\\mu _{AG}&\\mu _{AC}&\\mu _{AT}\\\\\n\\mu _{GA}&-\\mu _{G}&\\mu _{GC}&\\mu _{GT}\\\\\n\\mu _{CA}&\\mu _{CG}&-\\mu _{C}&\\mu _{CT}\\\\\n\\mu _{TA}&\\mu _{TG}&\\mu _{TC}&-\\mu _{T}\n\\end{pmatrix}\n}\n}\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntransitions  transversions\n\n\n\n\n\\[\n\\tiny{\nJC69 \\longrightarrow Q = {\n\\begin{pmatrix}{*}&{\\mu  \\over 4}&{\\mu  \\over 4}&{\\mu  \\over 4}\\\\{\\mu  \\over 4}&{*}&{\\mu  \\over 4}&{\\mu  \\over 4}\\\\{\\mu  \\over 4}&{\\mu  \\over 4}&{*}&{\\mu  \\over 4}\\\\{\\mu  \\over 4}&{\\mu  \\over 4}&{\\mu  \\over 4}&{*}\\end{pmatrix}\n}\n}\n\\]\n\n\n\n\n\\[\n\\tiny{\nHKY85 \\longrightarrow Q = {\n\\begin{pmatrix}{*}&{\\kappa \\pi _{G}}&{\\pi _{C}}&{\\pi _{T}}\\\\{\\kappa \\pi _{A}}&{*}&{\\pi _{C}}&{\\pi _{T}}\\\\{\\pi _{A}}&{\\pi _{G}}&{*}&{\\kappa \\pi _{T}}\\\\{\\pi _{A}}&{\\pi _{G}}&{\\kappa \\pi _{C}}&{*}\\end{pmatrix}\n}\n}\n\\]\n\n\n\n\n\\[\n\\tiny{\nGTR \\longrightarrow Q = {\n\\begin{pmatrix}{-(\\alpha \\pi _{G}+\\beta \\pi _{C}+\\gamma \\pi _{T})}&{\\alpha \\pi _{G}}&{\\beta \\pi _{C}}&{\\gamma \\pi _{T}}\\\\{\\alpha \\pi _{A}}&{-(\\alpha \\pi _{A}+\\delta \\pi _{C}+\\epsilon \\pi _{T})}&{\\delta \\pi _{C}}&{\\epsilon \\pi _{T}}\\\\{\\beta \\pi _{A}}&{\\delta \\pi _{G}}&{-(\\beta \\pi _{A}+\\delta \\pi _{G}+\\eta \\pi _{T})}&{\\eta \\pi _{T}}\\\\{\\gamma \\pi _{A}}&{\\epsilon \\pi _{G}}&{\\eta \\pi _{C}}&{-(\\gamma \\pi _{A}+\\epsilon \\pi _{G}+\\eta \\pi _{C})}\\end{pmatrix}\n}\n}\n\\]"
+  },
+  {
+    "objectID": "phylo_bayes.html#modèles-dévolution-1",
+    "href": "phylo_bayes.html#modèles-dévolution-1",
+    "title": "",
+    "section": "Modèles d’évolution",
+    "text": "Modèles d’évolution\n\nRéversibilité :\n\nla plupart des modèles de substitutions sont réversibles dans le temps : on obtient un arbre non enraciné (pas de direction de l’évolution, on peut mettre n’importe quel taxon à la racine)\ncertains modèles sont non-réversibles : l’évolution va dans une direction, on obtient un arbre avec une racine identifiée\n\nSi les séquences étudiées sont codantes :\n\non peut les traduire en protéines, et utiliser un modèle basé sur des matrices d’échange entre aminoacides (Blosum62, Dayhoff, JTT…)\non peut définir le codon comme unité de base"
+  },
+  {
+    "objectID": "phylo_bayes.html#modèles-dévolution-2",
+    "href": "phylo_bayes.html#modèles-dévolution-2",
+    "title": "",
+    "section": "Modèles d’évolution",
+    "text": "Modèles d’évolution\n\nHétérogénéité :\n\nconcerne les taux de substitutions, les fréquences des caractères (nucléotides…)\nentre sites (zones conservées, sous pression sélective…) : distribution gamma\n\n\n\n\n\n\n\n\n\négalement entre taxa (vitesses d’évolution différentes)"
+  },
+  {
+    "objectID": "phylo_bayes.html#comment-choisir-son-modèle-évolutif",
+    "href": "phylo_bayes.html#comment-choisir-son-modèle-évolutif",
+    "title": "",
+    "section": "Comment choisir son modèle évolutif ?",
+    "text": "Comment choisir son modèle évolutif ?\n\nCas simple : on sait quel modèle évolutif produit nos séquences\n→ on n’a que les paramètres à estimer\nCas compliqué : on ne connait pas le modèle\n\nML :\n\ngénérer 1 arbre (NJ)\noptimiser (ML) les paramètres de chaque modèle → comparer (LRT, AIC, AICc…)\nutiliser le meilleur modèle pour inférence de l’arbre par ML\nex : Modeltest, jModelTest, ProtTest, ModelTest-NG, ModelFinder…\n\nBI :\n\nutiliser le modèle choisi par ML (mais : conditionné par l’utilisation d’un arbre initial, et impossible d’avoir les incertitudes sur les paramètres)\non peut comparer des modèles en calculant le log du Facteur de Bayes : rapport des vraisemblances marginales estimées par une méthode (ex : Path Sampling, Stepping-Stone Smapling, Reversible Jump MCMC) → long et fastidieux\non peut co-estimer le modèle avec l’inférence de l’arbre par BI (ex: bModelTest)"
+  },
+  {
+    "objectID": "phylo_bayes.html#iq-tree-ml",
+    "href": "phylo_bayes.html#iq-tree-ml",
+    "title": "",
+    "section": "IQ-TREE (ML)",
+    "text": "IQ-TREE (ML)\n\n\nlogiciel récent, en développement actif, très complet\npoints forts :\n\nalgo. stochastique très efficient pour l’inférence ML d’arbres phylogénétiques\nintègre ModelFinder pour aider au choix du modèle\nintègre une alternative au bootstrapping pour une mesure fiable et rapide du support des branches : UFBoot (Ultrafast Botstrap Approximation) et d’autres mesures\ngère de gros jeux de données (milliers de séquences / millions de sites)\nmodèles de substitutions\ndisponible sur Galaxy Karubionet !!!"
+  },
+  {
+    "objectID": "phylo_bayes.html#autres-logiciels-ml",
+    "href": "phylo_bayes.html#autres-logiciels-ml",
+    "title": "",
+    "section": "Autres logiciels ML",
+    "text": "Autres logiciels ML\nPhyML\nRAxML\nFastTree 2"
+  },
+  {
+    "objectID": "phylo_bayes.html#section",
+    "href": "phylo_bayes.html#section",
+    "title": "",
+    "section": "",
+    "text": "réécriture de BEAST 1.x pour plus de modularité, formé plusieurs programmes :\n\nBEAUTi → importation les données, design de l’analyse, génération du fichier contrôle XML\nBEAST → programme principal, procède à l’analyse MCMC à partir du fichier XML\nTreeAnnotator → assemble tous les arbres issus de BEAST\nTreeStat → obtention de stats et infos sur les arbres\nLogCombiner → utilitaire qui réalise des opérations sur les sorties stats (logs) de BEAST\n\nnombreux modules\nprogrammes connexes mais très utiles :\n\nTracer → outil graphique d’exploration des sorties de BEAST (diagnostic de convergence, ESS…)\nFigTree → programme graphique pour visualiser des arbres phylogénétiques\n\nseulement BEAST 1.x sur Galaxy…"
+  },
+  {
+    "objectID": "phylo_bayes.html#autres-logiciels-bi",
+    "href": "phylo_bayes.html#autres-logiciels-bi",
+    "title": "",
+    "section": "Autres logiciels BI",
+    "text": "Autres logiciels BI\nMrBayes\nRevBayes\nMCMCTree\nPhylobase"
+  },
+  {
+    "objectID": "phylo_bayes.html#lecture",
+    "href": "phylo_bayes.html#lecture",
+    "title": "",
+    "section": "Lecture",
+    "text": "Lecture\n\n\n\n\n\n\n13 décembre 2023 / Formation Karubionet / Sébastien Guyader"
+  }
+]
